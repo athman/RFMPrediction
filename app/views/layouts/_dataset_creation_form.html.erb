@@ -1,57 +1,53 @@
+<%= debug @dataset %>
 <%= form_for @dataset, html: { class: "form-signin" } do |t| %>
 	<h2 class="form-signin-heading">Generate a Dataset</h2>
 	<%=
 	#render "shared/dataset_create_error_message"
 	%>
 	<% if @dataset.errors.include?(:min_latitude) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:min_latitude) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:min_latitude) %></span>
 	<% end %>
-	<%= t.text_field :min_latitude, class: "form-control", placeholder: "latitude" %>
+	<%= t.text_field :min_latitude, class: "form-control", placeholder: "minimum latitude" %>
 
 	<% if @dataset.errors.include?(:max_latitude) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:max_latitude) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_latitude) %></span>
 	<% end %>
-	<%= t.text_field :min_latitude, class: "form-control", placeholder: "latitude" %>
+	<%= t.text_field :max_latitude, class: "form-control", placeholder: "maximum latitude" %>
 
 	<% if @dataset.errors.include?(:min_longitude) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:min_longitude) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:min_longitude) %></span>
 	<% end %>
 	<%= t.text_field :min_longitude, class: "form-control", placeholder: "minimum longitude" %>
 
 	<% if @dataset.errors.include?(:max_longitude) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:max_longitude) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_longitude) %></span>
 	<% end %>
 	<%= t.text_field :max_longitude, class: "form-control", placeholder: "maximum longitude" %>
 
 	<% if @dataset.errors.include?(:min_gain) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:min_gain) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:min_gain) %></span>
 	<% end %>
 	<%= t.text_field :min_gain, class: "form-control", placeholder: "minimum gain" %>
 
 	<% if @dataset.errors.include?(:max_gain) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:max_gain) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_gain) %></span>
 	<% end %>
 	<%= t.text_field :max_gain, class: "form-control", placeholder: "maximum gain" %>
 
 	<% if @dataset.errors.include?(:min_height) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:min_height) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:min_height) %></span>
 	<% end %>
 	<%= t.text_field :min_height, class: "form-control", placeholder: "minimum height" %>
 
 	<% if @dataset.errors.include?(:max_height) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:max_height) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_height) %></span>
 	<% end %>
 	<%= t.text_field :max_height, class: "form-control", placeholder: "maximum height" %>
 
-	<% if @dataset.errors.include?(:min_gain) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:min_gain) %></span>
-	<% end %>
-	<%= t.text_field :min_gain, class: "form-control", placeholder: "email" %>
-
 	<% if @dataset.errors.include?(:quantity) %>
-		<span class="label label-danger"><%= @user.errors.full_messages_for(:quantity) %></span>
+		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:quantity) %></span>
 	<% end %>
-	<%= t.text_field :min_gain, class: "form-control", placeholder: "quantity" %>
+	<%= t.text_field :quantity, class: "form-control", placeholder: "quantity" %>
 
 	<%= t.submit "Generate", class: "btn btn-lg btn-primary btn-block" %>
 
