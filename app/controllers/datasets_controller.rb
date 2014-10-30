@@ -11,16 +11,19 @@ class DatasetsController < ApplicationController
 		@dataset = Dataset.new(dataset_params)
 		if @dataset.valid?
 
-			generated_set = Array.new
+			@generated_set = Hash.new
 
-			@dataset.quantity.times do
-				iterating_array = Array.new
-
+			@dataset.quantity.to_i.times do |n|
+				i = Hash.new
+				i['latitude'] = Random.new.rand(@dataset.min_latitude.to_f..@dataset.max_latitude.to_f).round(6)
+				i['longitude'] = Random.new.rand(@dataset.min_longitude.to_f..@dataset.max_longitude.to_f).round(6)
+				i['gain'] = Random.new.rand(@dataset.min_gain.to_f..@dataset.max_gain.to_f).round(2)
+				i['height'] = Random.new.rand(@dataset.min_height.to_f..@dataset.max_height.to_f).round(1)
+				meter = "meter #{n}"
+				@generated_set[meter] = i
 			end
 
-			flash[:notice] = "#{@dataset.min_latitude}"
-
-			redirect_to @dataset
+			render xml: @generated_set
 		else
 			render 'new'
 		end
