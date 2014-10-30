@@ -4,8 +4,8 @@ ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use PostgreSQL as the database for Active Record
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -45,6 +45,9 @@ gem 'better_errors'
 group :development do
 	gem 'rails_layout'
 	gem 'binding_of_caller'
+
+	# Use SQLite3 as the database for Active Record
+	gem 'sqlite3'
 end
 
 # Use ActiveModel has_secure_password
