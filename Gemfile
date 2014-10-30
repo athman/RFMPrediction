@@ -42,6 +42,7 @@ gem 'better_errors'
 
 group :development do
 	gem 'rails_layout'
+	gem 'binding_of_caller'
 end
 
 # Use ActiveModel has_secure_password

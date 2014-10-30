@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  min_latitude: 1.5
+  max_latitude: 1.5
+  min_longitude: 1.5
+  max_longitude: 1.5
+  min_gain: 1.5
+  max_gain: 1.5
+  min_height: 1.5
+  max_height: 1.5
+  quanity: 1
+
+two:
+  min_latitude: 1.5
+  max_latitude: 1.5
+  min_longitude: 1.5
+  max_longitude: 1.5
+  min_gain: 1.5
+  max_gain: 1.5
+  min_height: 1.5
+  max_height: 1.5
+  quanity: 1
