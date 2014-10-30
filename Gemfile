@@ -42,6 +42,8 @@ gem 'twitter-bootswatch-rails-helpers'
 # Use better_errors for pretty and comprehensive error messages
 gem 'better_errors'
 
+gem 'rails_12factor', group: :production
+
 group :development do
 	gem 'rails_layout'
 	gem 'binding_of_caller'
