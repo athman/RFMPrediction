@@ -11,6 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030150653) do
+ActiveRecord::Schema.define(version: 20141103101856) do
+
+  create_table "datasets", force: true do |t|
+    t.float    "min_latitude"
+    t.float    "max_latitude"
+    t.float    "min_longitude"
+    t.float    "max_longitude"
+    t.float    "min_gain"
+    t.float    "max_gain"
+    t.float    "min_height"
+    t.float    "max_height"
+    t.integer  "quanity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

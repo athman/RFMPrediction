@@ -44,12 +44,30 @@ gem 'better_errors'
 
 gem 'rails_12factor', group: :production
 
+# Use carrier wave and fog for file uploads
+#gem 'carrierwave'
+#gem "fog"
+
+# Use paperclip and aws for file uploads
+#gem 'paperclip'
+#gem 'aws-sdk'
+
+# Use dragonfly for file uploads
+gem 'dragonfly'
+gem 'dragonfly-s3_data_store'
+
+
 group :development do
+	gem 'annotate'
 	gem 'rails_layout'
 	gem 'binding_of_caller'
 
 	# Use SQLite3 as the database for Active Record
 	gem 'sqlite3'
+end
+
+group :production do
+	gem 'rack-cache', :require => 'rack/cache'
 end
 
 # Use ActiveModel has_secure_password
