@@ -3,19 +3,21 @@
 <%= link_to 'Add New Task', new_task_path, class: 'btn btn-lg btn-primary' %>
 
 <ul class="row" id="photos-list">
-  <% @tasks.each do |task| %>
-    <li class="col-xs-3">
-        <% if Rails.env.production? %>
-            <%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
-                        task.dataset.remote_url, target: '_blank' %>
-            <p><%= task.name %></p>
-        <% else %>
+    <% @tasks.each do |task| %>
+        <li class="col-xs-3">
             <% if Rails.env.production? %>
-            <%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
-                        task.dataset.url, target: '_blank' %>
-            <p><%= task.name %></p>
-    </li>
-  <% end %>
+                <%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
+                            task.dataset.remote_url, target: '_blank' %>
+                <p><%= task.name %></p>
+            <% else %>
+                <% if Rails.env.production? %>
+                    <%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
+                                task.dataset.url, target: '_blank' %>
+                    <p><%= task.name %></p>
+                <% end %>
+            <% end %>
+        </li>
+    <% end %>
 </ul>
 
 
