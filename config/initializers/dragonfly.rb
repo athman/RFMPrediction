@@ -1,4 +1,5 @@
 require 'dragonfly'
+require 'dragonfly/s3_data_store'
 
 # Configure
 Dragonfly.app.configure do
@@ -23,4 +24,20 @@ Rails.application.middleware.use Dragonfly::Middleware
 if defined?(ActiveRecord::Base)
   ActiveRecord::Base.extend Dragonfly::Model
   ActiveRecord::Base.extend Dragonfly::Model::Validations
+end
+
+
+# Configuration for Amazon s3
+url_format "/media/:job/:name"
+
+if Rails.env.development? || Rails.env.test?
+    datastore :file,
+    root_path: Rails.root.join('public/system/dragonfly', Rails.env),
+    server_root: Rails.root.join('public')
+else
+    datastore :s3,
+    bucket_name: rfmprediction-datasets,
+    access_key_id: AKIAJU6P5VS4ZJYKVS2A,
+    secret_access_key: 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,
+    url_scheme: 'https'
 end

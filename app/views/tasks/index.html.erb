@@ -5,9 +5,15 @@
 <ul class="row" id="photos-list">
   <% @tasks.each do |task| %>
     <li class="col-xs-3">
-      <%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
-                  task.dataset.url, target: '_blank' %>
-      <p><%= task.name %></p>
+        <% if Rails.env.production? %>
+            <%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
+                        task.dataset.remote_url, target: '_blank' %>
+            <p><%= task.name %></p>
+        <% else %>
+            <% if Rails.env.production? %>
+            <%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
+                        task.dataset.url, target: '_blank' %>
+            <p><%= task.name %></p>
     </li>
   <% end %>
 </ul>
