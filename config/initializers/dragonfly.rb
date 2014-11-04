@@ -16,9 +16,9 @@ Dragonfly.app.configure do
             server_root: Rails.root.join('public')
     else
         datastore :s3,
-            bucket_name: ENV["rfmprediction-datasets"],
-            access_key_id: ENV["AKIAJU6P5VS4ZJYKVS2A"],
-            secret_access_key: ENV["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"],
+            bucket_name: ENV['S3_BUCKET_NAME'],
+            access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+            secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
             url_scheme: 'https'
     end
 end
