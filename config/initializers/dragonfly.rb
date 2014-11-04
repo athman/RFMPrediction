@@ -29,35 +29,37 @@ end
 
 
 
-#app = Dragonfly[:rfmprediction]
-#
-#app.configure_with(:imagemagick)
-#app.configure_with(:rails)
-#if Rails.env.production?
-#  app.configure do |c|
-#    c.datastore = Dragonfly::DataStorage::S3DataStore.new(
-#      :bucket_name => 'rfmprediction-datasets',
-#      :access_key_id => ENV['S3_KEY'],
-#      :secret_access_key => ENV['S3_SECRET']
-#    )
-#  end
-#end
-#
-#app.define_macro(ActiveRecord::Base, :dataset_accessor)
+app = Dragonfly[:rfmprediction]
+
+app.configure_with(:imagemagick)
+app.configure_with(:rails)
+if Rails.env.production?
+  app.configure do |c|
+    c.datastore = Dragonfly::DataStorage::S3DataStore.new(
+      :bucket_name => 'rfmprediction-datasets',
+      :access_key_id => ENV['S3_KEY'],
+      :secret_access_key => ENV['S3_SECRET']
+    )
+  end
+end
+
+app.define_macro(ActiveRecord::Base, :dataset_accessor)
 
 
 
 
 # Configuration for Amazon s3
-#url_format "/media/:job/:name"
+# url_format "/media/:job/:name"
 if Rails.env.development? || Rails.env.test?
     datastore :file,
         root_path: Rails.root.join('public/system/dragonfly', Rails.env),
         server_root: Rails.root.join('public')
-else
-    datastore :s3,
-        bucket_name: "rfmprediction-datasets",
-        access_key_id: "AKIAJU6P5VS4ZJYKVS2A",
-        secret_access_key: "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",
-        url_scheme: 'https'
 end
+
+#else
+#    datastore :s3,
+#        bucket_name: "rfmprediction-datasets",
+#        access_key_id: "AKIAJU6P5VS4ZJYKVS2A",
+#        secret_access_key: "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",
+#        url_scheme: 'https'
+#end
