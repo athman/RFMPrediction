@@ -37,7 +37,7 @@ if Rails.env.development? || Rails.env.test?
 else
     datastore :s3,
     bucket_name: "rfmprediction-datasets",
-    access_key_id: AKIAJU6P5VS4ZJYKVS2A,
-    secret_access_key: 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,
+    access_key_id: "AKIAJU6P5VS4ZJYKVS2A",
+    secret_access_key: "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",
     url_scheme: 'https'
 end
