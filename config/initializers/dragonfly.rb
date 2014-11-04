@@ -29,7 +29,7 @@ end
 
 
 
-app = Dragonfly[:rfmprediction]
+app = Dragonfly.app
 
 app.configure_with(:imagemagick)
 app.configure_with(:rails)
