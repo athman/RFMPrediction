@@ -28,7 +28,7 @@ end
 
 
 # Configuration for Amazon s3
-url_format "/media/:job/:name"
+#url_format "/media/:job/:name"
 
 if Rails.env.development? || Rails.env.test?
     datastore :file,
