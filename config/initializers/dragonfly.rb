@@ -32,7 +32,7 @@ end
 app = Dragonfly.app
 
 app.configure_with(:imagemagick)
-app.configure_with(:rails)
+#app.configure_with(:rails)
 if Rails.env.production?
   app.configure do |c|
     c.datastore = Dragonfly::DataStorage::S3DataStore.new(
