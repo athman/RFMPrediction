@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>User:</strong>
   <%= @task.user_id %>
@@ -14,6 +12,13 @@
   <strong>Description:</strong>
   <%= @task.description %>
 </p>
+
+      <%= link_to image_tag(@task.dataset.thumb('180x180#').url, alt: @task.name, class: 'img-thumbnail'),
+                  @task.dataset.url, target: '_blank' %>
+      <p><%= @task.name %></p>
+
+	  <%= debug @task %>
+	  <%= Dragonfly.app.fetch(@task.dataset_uid).ext %>
 
 
 <%= link_to 'Edit', edit_task_path(@task) %> |

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <meter-0>
+    <latitude type="float">1.672168</latitude>
+    <longitude type="float">16.073038</longitude>
+    <gain type="float">5.86</gain>
+    <height type="float">46.5</height>
+  </meter-0>
+  <meter-1>
+    <latitude type="float">-0.831722</latitude>
+    <longitude type="float">19.65565</longitude>
+    <gain type="float">5.23</gain>
+    <height type="float">19.8</height>
+  </meter-1>
+  <meter-2>
+    <latitude type="float">1.409969</latitude>
+    <longitude type="float">13.402201</longitude>
+    <gain type="float">6.32</gain>
+    <height type="float">45.9</height>
+  </meter-2>
+  <meter-3>
+    <latitude type="float">3.141747</latitude>
+    <longitude type="float">15.370945</longitude>
+    <gain type="float">5.65</gain>
+    <height type="float">92.0</height>
+  </meter-3>
+  <meter-4>
+    <latitude type="float">2.549161</latitude>
+    <longitude type="float">20.314909</longitude>
+    <gain type="float">5.3</gain>
+    <height type="float">59.3</height>
+  </meter-4>
+  <meter-5>
+    <latitude type="float">3.388832</latitude>
+    <longitude type="float">12.994097</longitude>
+    <gain type="float">5.97</gain>
+    <height type="float">55.2</height>
+  </meter-5>
+  <meter-6>
+    <latitude type="float">1.451501</latitude>
+    <longitude type="float">22.434133</longitude>
+    <gain type="float">5.78</gain>
+    <height type="float">13.4</height>
+  </meter-6>
+  <meter-7>
+    <latitude type="float">0.83452</latitude>
+    <longitude type="float">17.67413</longitude>
+    <gain type="float">5.11</gain>
+    <height type="float">73.6</height>
+  </meter-7>
+  <meter-8>
+    <latitude type="float">2.425214</latitude>
+    <longitude type="float">17.392169</longitude>
+    <gain type="float">6.32</gain>
+    <height type="float">29.5</height>
+  </meter-8>
+  <meter-9>
+    <latitude type="float">3.997293</latitude>
+    <longitude type="float">19.585283</longitude>
+    <gain type="float">5.56</gain>
+    <height type="float">11.8</height>
+  </meter-9>
+  <meter-10>
+    <latitude type="float">1.65577</latitude>
+    <longitude type="float">15.570613</longitude>
+    <gain type="float">6.34</gain>
+    <height type="float">35.6</height>
+  </meter-10>
+  <meter-11>
+    <latitude type="float">1.243055</latitude>
+    <longitude type="float">21.86791</longitude>
+    <gain type="float">6.43</gain>
+    <height type="float">58.7</height>
+  </meter-11>
+  <meter-12>
+    <latitude type="float">1.165338</latitude>
+    <longitude type="float">19.210228</longitude>
+    <gain type="float">5.56</gain>
+    <height type="float">31.2</height>
+  </meter-12>
+  <meter-13>
+    <latitude type="float">2.86398</latitude>
+    <longitude type="float">19.694785</longitude>
+    <gain type="float">6.81</gain>
+    <height type="float">57.1</height>
+  </meter-13>
+  <meter-14>
+    <latitude type="float">-1.011276</latitude>
+    <longitude type="float">15.266699</longitude>
+    <gain type="float">5.48</gain>
+    <height type="float">32.4</height>
+  </meter-14>
+  <meter-15>
+    <latitude type="float">4.091629</latitude>
+    <longitude type="float">23.181638</longitude>
+    <gain type="float">6.61</gain>
+    <height type="float">98.6</height>
+  </meter-15>
+  <meter-16>
+    <latitude type="float">2.188793</latitude>
+    <longitude type="float">12.782303</longitude>
+    <gain type="float">6.19</gain>
+    <height type="float">8.4</height>
+  </meter-16>
+  <meter-17>
+    <latitude type="float">-0.833389</latitude>
+    <longitude type="float">20.879229</longitude>
+    <gain type="float">6.08</gain>
+    <height type="float">15.6</height>
+  </meter-17>
+  <meter-18>
+    <latitude type="float">1.566525</latitude>
+    <longitude type="float">20.300897</longitude>
+    <gain type="float">5.02</gain>
+    <height type="float">83.4</height>
+  </meter-18>
+  <meter-19>
+    <latitude type="float">3.451903</latitude>
+    <longitude type="float">16.123986</longitude>
+    <gain type="float">5.11</gain>
+    <height type="float">44.4</height>
+  </meter-19>
+</hash>

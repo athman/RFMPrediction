@@ -8,6 +8,7 @@
 #  description :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
+#  dataset_url :string(255)
 #
 
 require 'test_helper'

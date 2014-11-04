@@ -1,0 +1,6 @@
+<% if @task.errors.messages.any? %>
+  <div id="error_message" class="alert alert-danger">
+    <h4><strong>Sorry:</strong> The task could not be created </h4>
+    <h5> See <%= pluralize(@task.errors.messages.count, "error")%> below: </h5>
+  </div>
+<% end %>
