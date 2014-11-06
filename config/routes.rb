@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
-  resources :tasks
+  resources :tasks do
+	member do
+	  get "execute"
+	end
+  end
+
+  #get 'tasks/execute'
+  #match ':controller(/:id(/:action))(.:format)', via: [:get, :post]
+  #match 'tasks/:id/:execute', to: "tasks/execute"
 
   root 'pages#home'
 
