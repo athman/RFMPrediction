@@ -12,12 +12,12 @@
 <li class="col-xs-3">
 	<% if Rails.env.production? %>
 		<%= link_to image_tag(@task.dataset.thumb('180x180#').url, alt: @task.name, class: 'img-thumbnail'),
-					@task.dataset.remote_url, target: '_blank' %>
+					@task.dataset.url, target: '_blank' %>
 		<p><%= @task.name %></p>
 	<% else %>
 		<% if Rails.env.development? %>
 			<%= link_to image_tag(@task.dataset.thumb('180x180#').url, alt: @task.name, class: 'img-thumbnail'),
-						@task.dataset.url, target: '_blank' %>
+						@task.dataset.remote_url, target: '_blank' %>
 			<p><%= @task.name %></p>
 		<% end %>
 	<% end %>

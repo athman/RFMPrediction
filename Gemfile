@@ -63,6 +63,10 @@ group :development do
 
 	# Use SQLite3 as the database for Active Record
 	gem 'sqlite3'
+
+	# Use Mongrel as the development server
+	#gem 'mongrel'
+	#gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
 end
 
 group :production do

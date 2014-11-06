@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
 
@@ -63,11 +65,40 @@ class TasksController < ApplicationController
 
     def execute
         @task = Task.find(params[:id])
-        render xml: @task
+        if Rails.env.development?
+            #File.open(@task.dataset.remote_url)
+            #dataset = Nokogiri::XML(open('http://localhost:3000/media/W1siZiIsIjIwMTQvMTEvMDYvN3RqdWNteTVkc19kYXRhc2V0c18zLnhtbCJdXQ?sha=5033c6b0522d7542'))
+            open('http://localhost:3000/system/dragonfly/development/2014/11/06/7tjucmy5ds_datasets_3.xml')
+            #@dataset = Nokogiri::XML('http://localhost:3000/system/dragonfly/development/2014/11/06/7tjucmy5ds_datasets_3.xml')
+            #@dataset = Nokogiri::XML(open(@task.dataset.remote_url))
+            #@dataset = Nokogiri::XML(open('https://rfmprediction-assets.s3.amazonaws.com/2014/11/06/11/23/57/145/datasets_3.xml'))
+            #@dataset = Nokogiri::XML(open(@task.dataset.url))
+            #@dataset = Nokogiri::XML(open('http://localhost:3000/system/dragonfly/development/2014/11/06/7tjucmy5ds_datasets_3.xml'))
+        else
+            if Rails.env.production?
+                @dataset = Nokogiri::XML(open(@task.dataset.remote_url))
+            end
+        end
+
+        @meters = Array.new
+
+        @dataset.css("object").each do |object|
+            meter = Hash.new
+            meter['latitude'] = object.at_css("latitude").text.to_s
+            meter['longitude'] = object.at_css("longitude").text.to_s
+            meter['gain'] = object.at_css("gain").text.to_s
+            meter['height'] = object.at_css("height").text.to_s
+            @meters.push(meter)
+        end
+
+
+        #@objects = @dataset.xpath("//object")
 
         #respond_to do |format|
-        #    format.html { redirect_to @task}
+        #    format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+        #    format.json { head :no_content }
         #end
+        render xml: @meters
     end
 
     private
