@@ -21,6 +21,7 @@ class DatasetsController < ApplicationController
 				i['gain'] = 1;
 				#i['height'] = Random.new.rand(@dataset.min_height.to_f..@dataset.max_height.to_f).round(1)
 				i['height'] = 1.5
+				i['transmitting_power'] = 30
 				@generated_set.push(i)
 			end
 

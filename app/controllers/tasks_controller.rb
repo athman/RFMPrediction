@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'meter_agent'
 
 class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
@@ -66,14 +67,8 @@ class TasksController < ApplicationController
     def execute
         @task = Task.find(params[:id])
         if Rails.env.development?
-            #File.open(@task.dataset.remote_url)
-            #dataset = Nokogiri::XML(open('http://localhost:3000/media/W1siZiIsIjIwMTQvMTEvMDYvN3RqdWNteTVkc19kYXRhc2V0c18zLnhtbCJdXQ?sha=5033c6b0522d7542'))
-            open('http://localhost:3000/system/dragonfly/development/2014/11/06/7tjucmy5ds_datasets_3.xml')
-            #@dataset = Nokogiri::XML('http://localhost:3000/system/dragonfly/development/2014/11/06/7tjucmy5ds_datasets_3.xml')
-            #@dataset = Nokogiri::XML(open(@task.dataset.remote_url))
-            #@dataset = Nokogiri::XML(open('https://rfmprediction-assets.s3.amazonaws.com/2014/11/06/11/23/57/145/datasets_3.xml'))
             #@dataset = Nokogiri::XML(open(@task.dataset.url))
-            #@dataset = Nokogiri::XML(open('http://localhost:3000/system/dragonfly/development/2014/11/06/7tjucmy5ds_datasets_3.xml'))
+            @dataset = Nokogiri::XML(open('https://rfmprediction-assets.s3.amazonaws.com/2014/11/06/11/23/57/145/datasets_3.xml'))
         else
             if Rails.env.production?
                 @dataset = Nokogiri::XML(open(@task.dataset.remote_url))
@@ -91,6 +86,42 @@ class TasksController < ApplicationController
             @meters.push(meter)
         end
 
+=begin
+For each meter
+    for all other meters
+        if the meter is not itself and the meter is within 5 km radius
+        calculate the power received
+        calculate signal loss
+        calculate antenna type
+        add result to result set
+=end
+        @results_set = Array.new
+
+        @transmitting_meter = nil
+        @distances = Array.new
+        @meters.each do |meter|
+            receiving_agent = MeterAgent.new meter['latitude'], meter['longitude'], meter['gain'], meter['height'], @meters
+            meter_result = Hash.new
+            theoretical_power_received_set = Array.new
+
+            receiving_agent.agents.each do |transmitting_meter|
+                if receiving_agent.in_vicinity?(transmitting_meter) && !receiving_agent.is_self?(transmitting_meter)
+                    #distance = receiving_agent.distance_between_myself_and_agent transmitting_meter
+                    #@distances.push distance
+                    friis_power_received = receiving_agent.friis_power_received transmitting_meter
+                    signal_lost = receiving_agent.signal_lost transmitting_meter
+                    theoretical_power_received = receiving_agent.theoretical_power_received friis_power_received, signal_lost
+                    theoretical_power_received_set.push theoretical_power_received
+                end
+            end
+
+            meter_result['latitude'] = meter['latitude']
+            meter_result['longitude'] = meter['longitude']
+            meter_result['resultant_theoretical_power_received'] = receiving_agent.resultant_theoretical_power_received theoretical_power_received_set
+            #meter_result['antenna_type'] = receiving_agent.antenna_type
+            @results_set.push meter_result
+
+        end
 
         #@objects = @dataset.xpath("//object")
 
@@ -98,7 +129,12 @@ class TasksController < ApplicationController
         #    format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
         #    format.json { head :no_content }
         #end
-        render xml: @meters
+
+        #render xml: @meters
+        #render xml: @results_set
+
+        @inspect = @results_set
+        render "inspect"
     end
 
     private

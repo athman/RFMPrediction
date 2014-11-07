@@ -55,6 +55,8 @@ gem 'rails_12factor', group: :production
 gem 'dragonfly'
 gem 'dragonfly-s3_data_store'
 
+# Use Geocoder for Geographic calculations
+gem 'geocoder'
 
 group :development do
 	gem 'annotate'
