@@ -58,6 +58,9 @@ gem 'dragonfly-s3_data_store'
 # Use Geocoder for Geographic calculations
 gem 'geocoder'
 
+# Use Gmaps4rails for maps
+gem 'gmaps4rails'
+
 group :development do
 	gem 'annotate'
 	gem 'rails_layout'

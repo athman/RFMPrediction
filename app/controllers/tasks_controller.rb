@@ -68,7 +68,8 @@ class TasksController < ApplicationController
         @task = Task.find(params[:id])
         if Rails.env.development?
             #@dataset = Nokogiri::XML(open(@task.dataset.url))
-            @dataset = Nokogiri::XML(open('https://rfmprediction-assets.s3.amazonaws.com/2014/11/06/11/23/57/145/datasets_3.xml'))
+            #@dataset = Nokogiri::XML(open('https://rfmprediction-assets.s3.amazonaws.com/2014/11/06/11/23/57/145/datasets_3.xml'))
+            @dataset = Nokogiri::XML(open('http://rfmprediction.herokuapp.com/media/W1siZiIsIjIwMTQvMTEvMDcvMTQvMjcvMzYvMjc4L2RhdGFzZXRzXzQueG1sIl1d?sha=a92a51bf272ec3e5'))
         else
             if Rails.env.production?
                 @dataset = Nokogiri::XML(open(@task.dataset.remote_url))
