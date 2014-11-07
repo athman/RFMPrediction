@@ -46,12 +46,14 @@ class MeterAgent
 	def friis_power_received agent
 		speed_of_light = 2.99792458e8
 		distance = distance_between_myself_and_agent agent
-		@friis_power_received = ((agent['transmitting_power'].to_f ||= 30) * @gain * agent['gain'].to_f * (speed_of_light ** 2))/(4 * Math::PI * distance * @frequency) ** 2
+		distance_in_meters = distance * 1000
+		@friis_power_received = ((agent['transmitting_power'].to_f ||= 30) * @gain * agent['gain'].to_f * (speed_of_light ** 2))/(4 * Math::PI * distance_in_meters * @frequency) ** 2
 	end
 
 	def theoretical_power_received friis_power_received_arg, signal_lost_arg
 		#friis_power_received_arg - signal_lost_arg
-		theoretical_power_received_value = friis_power_received_arg - signal_lost_arg
+		# For some weird reason we have to add the lost signal cuz it's returned as negative
+		theoretical_power_received_value = 30 + signal_lost_arg
 	end
 
 	def resultant_theoretical_power_received theoretical_power_received_set
@@ -66,16 +68,18 @@ class MeterAgent
 
 	def signal_lost agent
 		egli_loss_value = egli_loss_model agent
-		metal_meter_box_loss_value = metal_meter_box_loss
+		#metal_meter_box_loss_value = metal_meter_box_loss
 		#atmospheric_loss_value = atmospheric_loss
 
-		total_loss = egli_loss_value + metal_meter_box_loss_value
+		#total_loss = egli_loss_value + metal_meter_box_loss_value
+
 	end
 
 	def egli_loss_model agent
 		distance = distance_between_myself_and_agent agent
-		#egli_loss = agent['gain'].to_f * @gain * (((@height * agent['height'].to_f) / distance) ** 2) * ((40 / @frequency) ** 2)
-		egli_loss = (20 * Math.log(@height * agent['height'].to_f)) - (20 * Math.log(distance ** 2)) + (20 * Math.log(40)) - (10 * Math.log(@frequency))
+		distance_in_meters = distance * 1000
+		#egli_loss = agent['gain'].to_f * @gain * (((@height * agent['height'].to_f) / distance_in_meters) ** 2) * ((40 / @frequency) ** 2)
+		egli_loss = (20 * Math.log(@height * agent['height'].to_f, 10)) - (20 * Math.log(distance_in_meters ** 2, 10)) + (20 * Math.log(40, 10)) - (10 * Math.log(@frequency ** 2, 10))
 	end
 
 	def metal_meter_box_loss

@@ -104,20 +104,31 @@ For each meter
             meter_result = Hash.new
             theoretical_power_received_set = Array.new
 
+            meter_result['latitude'] = meter['latitude']
+            meter_result['longitude'] = meter['longitude']
+            meter_result['agents_in_vicinity'] = Array.new
+
             receiving_agent.agents.each do |transmitting_meter|
                 if receiving_agent.in_vicinity?(transmitting_meter) && !receiving_agent.is_self?(transmitting_meter)
-                    #distance = receiving_agent.distance_between_myself_and_agent transmitting_meter
+                    agent_in_vicinity = Hash.new
+                    agent_in_vicinity['agent'] = transmitting_meter
+                    distance = receiving_agent.distance_between_myself_and_agent transmitting_meter
+                    agent_in_vicinity['distance'] = distance
                     #@distances.push distance
                     friis_power_received = receiving_agent.friis_power_received transmitting_meter
+                    agent_in_vicinity['friis_power_received'] = friis_power_received
                     signal_lost = receiving_agent.signal_lost transmitting_meter
+                    agent_in_vicinity['signal_lost'] = signal_lost
                     theoretical_power_received = receiving_agent.theoretical_power_received friis_power_received, signal_lost
-                    theoretical_power_received_set.push theoretical_power_received
+                    agent_in_vicinity['theoretical_power'] = theoretical_power_received
+                    #theoretical_power_received_set.push theoretical_power_received
+                    meter_result['agents_in_vicinity'].push agent_in_vicinity
                 end
             end
 
-            meter_result['latitude'] = meter['latitude']
-            meter_result['longitude'] = meter['longitude']
+
             meter_result['resultant_theoretical_power_received'] = receiving_agent.resultant_theoretical_power_received theoretical_power_received_set
+
             #meter_result['antenna_type'] = receiving_agent.antenna_type
             @results_set.push meter_result
 
@@ -131,10 +142,10 @@ For each meter
         #end
 
         #render xml: @meters
-        #render xml: @results_set
+        render xml: @results_set
 
-        @inspect = @results_set
-        render "inspect"
+        #@inspect = @results_set
+        #render "inspect"
     end
 
     private
