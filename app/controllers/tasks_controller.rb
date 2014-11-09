@@ -129,8 +129,14 @@ For each meter
                 end
             end
 
-
             meter_result['resultant_theoretical_power_received'] = receiving_agent.resultant_theoretical_power_received theoretical_power_received_set
+
+            if meter_result['agents_in_vicinity'].any?
+                meter_result['can-communicate'] = true
+            else
+                meter_result['can-communicate'] = false
+            end
+
 
             #meter_result['antenna_type'] = receiving_agent.antenna_type
             @results_set.push meter_result
@@ -144,15 +150,66 @@ For each meter
         #@inspect = @results_set
         #render xml: @results_set
 
+        @markers = Array.new
+
+#        @results_set.each do |result|
+#            marker = Hash.new
+#            marker['lat'] = result['latitude']
+#            marker['lng'] = result['longitude']
+#            marker['title'] = "A meter"
+#            marker['picture'] = {
+#				url: "https://s3.amazonaws.com/rfmprediction-assets/2014/11/07/14/27/36/278/antenna_36x36.png",
+#				#url: "http://simpleicon.com/wp-content/uploads/antenna-3.png",
+#				#url: "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+#				#url: "/app/assets/images/antenna.png",
+#				width:  36,
+#				height: 36
+#			  }
+#            marker['infowindow'] = "A meter description"
+#            @markers.push marker
+#        end
+
         @markers = Gmaps4rails.build_markers(@results_set) do |meter, marker|
             marker.lat meter['latitude']
             marker.lng meter['longitude']
             marker.title meter['height']
             marker.infowindow meter['gain']
+            marker.picture({
+                    :url => "https://s3.amazonaws.com/rfmprediction-assets/2014/11/07/14/27/36/278/antenna_36x36.png",
+                    #:picture => "http://www.blankdots.com/img/github-32x32.png",
+                    #:picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|FF0000|000000",
+                    :width => 36,
+                    :height => 36
+                })
+
+
+            #if meter['can-communicate'] = true
+            #    marker.picture({
+            #        :picture => "https://s3.amazonaws.com/rfmprediction-assets/2014/11/07/14/27/36/278/antenna.png",
+            #        #:picture => "http://www.blankdots.com/img/github-32x32.png",
+            #        #:picture => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|FF0000|000000",
+            #        :width => 32,
+            #        :height => 32
+            #    })
+            #end
         end
 
         render "map"
+        #render json: @markers
     end
+
+    #def gmaps4rails_marker_picture
+    #    {
+    #        "picture" => "https://s3.amazonaws.com/rfmprediction-assets/2014/11/07/14/27/36/278/antenna.png",
+    #        "width" => 20,
+    #        "height" => 20,
+    #        "marker_anchor" => [ 5, 10],
+    #        #"shadow_picture" => "/images/morgan.png" ,
+    #        "shadow_width" => "110",
+    #        "shadow_height" => "110",
+    #        "shadow_anchor" => [5, 10],
+    #    }
+    #end
 
     private
       # Use callbacks to share common setup or constraints between actions.

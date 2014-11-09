@@ -60,6 +60,7 @@ gem 'geocoder'
 
 # Use Gmaps4rails for maps
 gem 'gmaps4rails'
+#gem 'gmaps4rails', "2.1.1"
 
 group :development do
 	gem 'annotate'
