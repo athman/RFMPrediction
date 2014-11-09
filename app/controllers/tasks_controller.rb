@@ -130,6 +130,7 @@ For each meter
             end
 
             meter_result['resultant_theoretical_power_received'] = receiving_agent.resultant_theoretical_power_received theoretical_power_received_set
+            meter_result['agents-communicating-count'] = meter_result['agents_in_vicinity'].count
 
             if meter_result['agents_in_vicinity'].any?
                 meter_result['can-communicate'] = true

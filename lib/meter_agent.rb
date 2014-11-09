@@ -23,7 +23,7 @@ class MeterAgent
 
 	def in_vicinity? agent
 		distance = distance_between_myself_and_agent agent
-		if distance > 5
+		if distance > 1.5
 			return false
 		else
 			return true

@@ -5,6 +5,8 @@
 	<div id="map" style='width: 800px; height: 400px;'></div>
 </div>
 
+<%= debug @results_set %>
+
 <script>
 	handler = Gmaps.build('Google');
 	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
