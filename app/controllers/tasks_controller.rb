@@ -107,6 +107,8 @@ For each meter
 
             meter_result['latitude'] = meter['latitude']
             meter_result['longitude'] = meter['longitude']
+            meter_result['height'] = meter['height']
+            meter_result['gain'] = meter['gain']
             meter_result['agents_in_vicinity'] = Array.new
 
             receiving_agent.agents.each do |transmitting_meter|
@@ -135,18 +137,21 @@ For each meter
 
         end
 
-        #@objects = @dataset.xpath("//object")
-
-        #respond_to do |format|
-        #    format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-        #    format.json { head :no_content }
-        #end
 
         #render xml: @meters
-        render xml: @results_set
+        #render xml: @meters
 
         #@inspect = @results_set
-        #render "inspect"
+        #render xml: @results_set
+
+        @markers = Gmaps4rails.build_markers(@results_set) do |meter, marker|
+            marker.lat meter['latitude']
+            marker.lng meter['longitude']
+            marker.title meter['height']
+            marker.infowindow meter['gain']
+        end
+
+        render "map"
     end
 
     private
