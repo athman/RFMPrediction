@@ -23,8 +23,6 @@
 		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_longitude) %></span>
 	<% end %>
 	<%= t.text_field :max_longitude, class: "form-control", placeholder: "maximum longitude" %>
-
-	Choose loss functions
 	<% if @dataset.errors.include?(:quantity) %>
 		<span class="label label-danger"><%= @dataset.errors.full_messages_for(:quantity) %></span>
 	<% end %>

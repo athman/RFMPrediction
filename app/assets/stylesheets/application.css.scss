@@ -1,26 +1,26 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
-@import "bootstrap";
+//@import "bootstrap";
 
 // Example using 'Cerulean' bootswatch
 //
 // First import cerulean variables
-@import "bootswatch/cosmo/variables";
+@import "bootswatch/yeti/variables";
 
 // Then bootstrap itself
-//@import "bootstrap";
+@import "bootstrap";
 
 // Bootstrap body padding for fixed navbar
 body { padding-top: 60px; }
 
 // And finally bootswatch style itself
-@import "bootswatch/cosmo/bootswatch";
+@import "bootswatch/yeti/bootswatch";
 
 // Whatever application styles you have go last
-@import "cosmo";
+@import "signin";
 
 .make_space{
-	margin-top: 200px;
+	//margin-top: 200px;
 }
 
 #photos-list {

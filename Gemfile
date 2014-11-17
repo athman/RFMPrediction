@@ -9,6 +9,10 @@ gem 'rails', '4.1.5'
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
 
+group :assets do
+
+end
+
 # Use Bootstrap for UI
 gem 'bootstrap-sass'
 
