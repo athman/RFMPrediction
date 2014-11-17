@@ -1,3 +1,0 @@
-// Sandstone
-// Bootswatch
-// bootswatch.js
