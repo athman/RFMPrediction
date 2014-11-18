@@ -1,36 +1,39 @@
-<h1>Listing tasks</h1>
+<div class="container">
+    <h1>Listing tasks</h1>
 
-<%= link_to 'Add New Task', new_task_path, class: 'btn btn-lg btn-primary' %>
+    <%= link_to 'Add New Task', new_task_path, class: 'btn btn-lg btn-primary' %>
 
-<% @tasks.each do |task| %>
-    <div class="media">
-        <a class="pull-left" href="<%= task_path(task) %>">
-            <%= task.name %>
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading"><%= "#{task.name}" %></h4>
-            <p><%= task.description ? task.description : "No description" %></p>
-            <% if Rails.env.production? %>
-                <p><%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
-                            task.dataset.remote_url, target: '_blank' %></p>
-            <% else %>
-                <% if Rails.env.development? %>
+    <% @tasks.each do |task| %>
+        <div class="media">
+            <a class="pull-left" href="<%= task_path(task) %>">
+                <%= task.name %>
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading"><%= "#{task.name}" %></h4>
+                <p><%= task.description ? task.description : "No description" %></p>
+                <% if Rails.env.production? %>
                     <p><%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
-                                task.dataset.url, target: '_blank' %></p>
+                                task.dataset.remote_url, target: '_blank' %></p>
+                <% else %>
+                    <% if Rails.env.development? %>
+                        <p><%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
+                                    task.dataset.url, target: '_blank' %></p>
+                    <% end %>
                 <% end %>
-            <% end %>
 
-            <%= link_to 'Show', task %>|
-            <%= link_to 'Edit', edit_task_path(task) %>|
-            <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Show', task %>|
+                <%= link_to 'Edit', edit_task_path(task) %>|
+                <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-            <% #if current_user.admin? && !current_user?(user)
-            %>
-                <%= #link_to "Delete", user, method: :delete, data:  { confirm: "Are you sure?" }, class: "btn.btn-danger"
+                <% #if current_user.admin? && !current_user?(user)
                 %>
-            <% #end
-            %>
+                    <%= #link_to "Delete", user, method: :delete, data:  { confirm: "Are you sure?" }, class: "btn.btn-danger"
+                    %>
+                <% #end
+                %>
+            </div>
         </div>
-    </div>
-    <hr />
-<% end %>
+        <hr />
+    <% end %>
+</div>
+

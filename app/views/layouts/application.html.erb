@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rfmprediction" %>">
         <title><%= content_for?(:title) ? yield(:title) : "rfmprediction" %></title>
+        <%= include_gon %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
         <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
         <%= csrf_meta_tags %>
@@ -30,7 +31,7 @@
         <!--<main role="main">
         </main>-->
 
-        <div class="container">
+        <div class="">
             <%= render 'layouts/messages' %>
             <%= yield %>
         </div>

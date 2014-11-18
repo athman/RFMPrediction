@@ -16,4 +16,7 @@
 //= require underscore
 //= require gmaps/google
 //= require bootstrap-sprockets
+//= require highcharts
+//= require half_pie
+
 

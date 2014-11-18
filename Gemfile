@@ -13,6 +13,12 @@ group :assets do
 
 end
 
+# Use chartkick to draw charts
+#gem 'chartkick'
+
+# Use high charts
+#gem "highcharts-rails", "~> 3.0.0"
+
 # Use Bootstrap for UI
 gem 'bootstrap-sass'
 
@@ -72,6 +78,9 @@ gem 'geocoder'
 # Use Gmaps4rails for maps
 gem 'gmaps4rails'
 #gem 'gmaps4rails', "2.1.1"
+
+# Pass local variables to Javascript
+gem 'gon'
 
 group :development do
 	gem 'annotate'

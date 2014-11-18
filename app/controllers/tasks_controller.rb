@@ -98,6 +98,12 @@ For each meter
 =end
         @results_set = Array.new
 
+        communicating_meters = Hash.new
+        communicating_meters['communicating'] = 0
+        communicating_meters['not_communicating'] = 0
+
+        @meters_not_communicating = Array.new
+
         @transmitting_meter = nil
         @distances = Array.new
         @meters.each do |meter|
@@ -124,7 +130,7 @@ For each meter
                     agent_in_vicinity['signal_lost'] = signal_lost
                     theoretical_power_received = receiving_agent.theoretical_power_received friis_power_received, signal_lost
                     agent_in_vicinity['theoretical_power'] = theoretical_power_received
-                    #theoretical_power_received_set.push theoretical_power_received
+                    theoretical_power_received_set.push theoretical_power_received
                     meter_result['agents_in_vicinity'].push agent_in_vicinity
                 end
             end
@@ -144,14 +150,19 @@ For each meter
 
             if meter_result['agents_can_communicate_count'] > 0
                 meter_result['can_communicate'] = true
+                communicating_meters['communicating'] += 1
             else
                 meter_result['can_communicate'] = false
+                communicating_meters['not_communicating'] += 1
+                @meters_not_communicating.push meter_result
             end
 
             #meter_result['antenna_type'] = receiving_agent.antenna_type
             @results_set.push meter_result
 
         end
+
+        gon.communicating_meters = communicating_meters
 
         @markers = Gmaps4rails.build_markers(@results_set) do |meter, marker|
             marker.lat meter['latitude']
@@ -179,7 +190,7 @@ For each meter
         render "map"
         #render json: @markers
 
-        #@inspect = @results_set
+        #@inspect = @meters_not_communicating
         #render xml: @results_set
         #render "inspect"
     end
