@@ -1,0 +1,23 @@
+#map_background {
+  height: 100%;
+  width: 100%;
+  position:absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  opacity: .2;
+  margin-top: 45px;
+}
+
+.form {
+  position: relative;
+  z-index: 11;
+  width: 300px;
+  margin: 60px auto 0;
+  padding: 10px;
+  background: inherit;
+  height: auto;
+  color: inherit;
+}
+
+

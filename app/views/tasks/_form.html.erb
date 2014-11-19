@@ -1,22 +1,26 @@
-<%= form_for @task, html: {multipart: true, class: "form-signin"} do  |f| %>
-    <h2>Create New Task</h2>
-    <%= render "shared/task_create_error_message" %>
+<div class="container form">
+    <% provide :title, "New Task" %>
+    <%= form_for @task, html: {multipart: true, class: "form-signin"} do  |f| %>
+        <h2>New Task</h2>
+        <%= render "shared/task_create_error_message" %>
 
-    <% if @task.errors.include?(:name) %>
-        <span class="label label-danger"><%= @task.errors.full_messages_for(:name) %></span>
+        <% if @task.errors.include?(:name) %>
+            <span class="label label-danger"><%= @task.errors.full_messages_for(:name) %></span>
+        <% end %>
+        <%= f.text_field :name, class: "form-control", placeholder: "task name", required: true %>
+
+        <% if @task.errors.include?(:description) %>
+            <span class="label label-danger"><%= @task.errors.full_messages_for(:description) %></span>
+        <% end %>
+        <%= f.text_area :description, class: "form-control", placeholder: "task description", required: true %>
+
+        <% if @task.errors.include?(:dataset) %>
+            <span class="label label-danger"><%= @task.errors.full_messages_for(:dataset) %></span>
+        <% end %>
+        <%= f.file_field :dataset, class: "form-control", placeholder: "dataset", required: true %>
+
+        <%= f.submit class: "btn btn-lg btn-primary btn-block" %>
+
     <% end %>
-    <%= f.text_field :name, class: "form-control", placeholder: "task name", required: true %>
+</div>
 
-    <% if @task.errors.include?(:description) %>
-        <span class="label label-danger"><%= @task.errors.full_messages_for(:description) %></span>
-    <% end %>
-    <%= f.text_area :description, class: "form-control", placeholder: "task description", required: true %>
-
-    <% if @task.errors.include?(:dataset) %>
-        <span class="label label-danger"><%= @task.errors.full_messages_for(:dataset) %></span>
-    <% end %>
-    <%= f.file_field :dataset, class: "form-control", placeholder: "dataset", required: true %>
-
-    <%= f.submit class: "btn btn-lg btn-primary btn-block" %>
-
-<% end %>
