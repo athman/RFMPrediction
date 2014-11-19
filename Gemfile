@@ -82,6 +82,9 @@ gem 'gmaps4rails'
 # Pass local variables to Javascript
 gem 'gon'
 
+# Add progress bars
+#gem 'nprogress-rails'
+
 group :development do
 	gem 'annotate'
 	gem 'rails_layout'

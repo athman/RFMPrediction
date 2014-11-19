@@ -20,6 +20,9 @@ body { padding-top: 60px; }
 @import "signin";
 @import "map_background";
 
+@import "nprogress";
+//@import "nprogress-bootstrap";
+
 #photos-list {
   padding: 0;
   margin: 0;

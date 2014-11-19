@@ -45,3 +45,8 @@
 .message .control {
   text-align: center;
 }
+
+#nprogress .bar,
+#nprogress .spinner {
+    z-index: 999999;
+    }

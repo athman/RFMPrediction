@@ -106,6 +106,8 @@ For each meter
 
         @transmitting_meter = nil
         @distances = Array.new
+        @polylines = Array.new
+
         @meters.each do |meter|
             receiving_agent = MeterAgent.new meter['latitude'], meter['longitude'], meter['gain'], meter['height'], @meters
             meter_result = Hash.new
@@ -129,6 +131,14 @@ For each meter
                     signal_lost = receiving_agent.signal_lost transmitting_meter
                     agent_in_vicinity['signal_lost'] = signal_lost
                     theoretical_power_received = receiving_agent.theoretical_power_received friis_power_received, signal_lost
+
+                    if theoretical_power_received >= -85
+                        polyline = Array.new
+                        polyline.push({lat: meter['latitude'],lng: meter['longitude']})
+                        polyline.push({lat: transmitting_meter['latitude'], lng: transmitting_meter['longitude']})
+                        @polylines.push polyline
+                    end
+
                     agent_in_vicinity['theoretical_power'] = theoretical_power_received
                     theoretical_power_received_set.push theoretical_power_received
                     meter_result['agents_in_vicinity'].push agent_in_vicinity
