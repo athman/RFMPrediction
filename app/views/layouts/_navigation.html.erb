@@ -7,12 +7,30 @@
 		  <span class="icon-bar"></span>
 		  <span class="icon-bar"></span>
 		</button>
-		<%= link_to "rfmprediction", root_path, class: "navbar-brand active" %>
+		<%= link_to root_path, class: "navbar-brand active" do %>
+			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+			<b><i>rfmprediction</i></b>
+		<% end %>
 		</div>
 		<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><%= link_to "Tasks", tasks_path %></li>
-					<li><%= link_to "New Dataset", new_dataset_path %></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>  Tasks <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li>
+								<%= link_to tasks_path do %>
+									<span>All Tasks</span>
+								<% end %>
+							</li>
+							<li><a href="<%= new_task_path %>">New Task</a></li>
+						</ul>
+					</li>
+					<li>
+						<%= link_to new_dataset_path do %>
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							New Dataset
+						<% end %>
+					</li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

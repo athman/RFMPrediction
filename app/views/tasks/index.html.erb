@@ -1,39 +1,52 @@
-<div class="container">
-    <h1>Listing tasks</h1>
+<div class="container" style="padding-top: 20px;">
+    <div class="row">
+        <% @tasks.each do |task| %>
 
-    <%= link_to 'Add New Task', new_task_path, class: 'btn btn-lg btn-primary' %>
 
-    <% @tasks.each do |task| %>
-        <div class="media">
-            <a class="pull-left" href="<%= task_path(task) %>">
-                <%= task.name %>
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading"><%= "#{task.name}" %></h4>
-                <p><%= task.description ? task.description : "No description" %></p>
+
+        <div class="col-sm-4 col-md-3">
+          <div class="thumbnail">
+            <!--<img data-src="holder.js/300x300" alt="...">-->
+            <div class="caption">
+              <h3><%= "#{task.name}" %></h3>
+              <p><%= task.description ? task.description : "No description" %></p>
+              <p>
                 <% if Rails.env.production? %>
-                    <p><%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
-                                task.dataset.remote_url, target: '_blank' %></p>
+                    <p><button><span class="glyphicon glyphicon-file" aria-hidden="true"></span><%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'), task.dataset.remote_url, target: '_blank' %></button></p>
                 <% else %>
                     <% if Rails.env.development? %>
-                        <p><%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'),
-                                    task.dataset.url, target: '_blank' %></p>
+                        <p><button><span class="glyphicon glyphicon-file" aria-hidden="true"></span><%= link_to image_tag(task.dataset.thumb('180x180#').url, alt: task.name, class: 'img-thumbnail'), task.dataset.url, target: '_blank' %></button></p>
                     <% end %>
                 <% end %>
 
-                <%= link_to 'Show', task %>|
-                <%= link_to 'Edit', edit_task_path(task) %>|
-                <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <!--<%= link_to task_path(task), class: "btn btn-xs btn-primary" do %>
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                    Show
+                <% end %>-->
 
-                <% #if current_user.admin? && !current_user?(user)
-                %>
-                    <%= #link_to "Delete", user, method: :delete, data:  { confirm: "Are you sure?" }, class: "btn.btn-danger"
-                    %>
-                <% #end
-                %>
+                <%= link_to edit_task_path(task), class: "btn btn-xs btn-primary" do %>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit
+                <% end %>
+
+                <%= link_to execute_task_path(task), class: "btn btn-xs btn-success" do %>
+                    <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+                    Execute
+                <% end %>
+
+                <%= link_to task, method: :delete, class: "btn btn-xs btn-danger", data: { confirm: 'Are you sure?' } do %>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    Delete
+                <% end %>
+              </p>
             </div>
+          </div>
         </div>
-        <hr />
+
+
+
+
+
     <% end %>
+    </div>
 </div>
 
