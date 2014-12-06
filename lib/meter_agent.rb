@@ -62,9 +62,36 @@ class MeterAgent
 		maximum_power_received = theoretical_power_received_set.max
 	end
 
+	def maximum_power_received theoretical_power_received_set
+		if theoretical_power_received_set.count > 0
+			maximum_power_received = theoretical_power_received_set.min
+		else
+			maximum_power_received = 0
+		end
+	end
+
+	def minimum_power_received theoretical_power_received_set
+		if theoretical_power_received_set.count > 0
+			minimum_power_received = theoretical_power_received_set.max
+		else
+			minimum_power_received = 0
+		end
+	end
+
 	def antenna_type
 		minimum_power_required = 90 #dBm
 		#code
+	end
+
+	def antenna_required maximum_power_received, minimum_power_received
+		if maximum_power_received < (minimum_power_received - 10)
+			antenna = "High Profile"
+		elsif minimum_power_received - 10 <= maximum_power_received && maximum_power_received < minimum_power_received
+			antenna = "Low Profile"
+		else
+			"--"
+		end
+
 	end
 
 	def signal_lost agent

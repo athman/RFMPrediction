@@ -150,6 +150,8 @@ For each meter
             end
 
             meter_result['resultant_theoretical_power_received'] = receiving_agent.resultant_theoretical_power_received theoretical_power_received_set
+            meter_result['minimum_power_received'] = receiving_agent.minimum_power_received theoretical_power_received_set
+            meter_result['maximum_power_received'] = receiving_agent.maximum_power_received theoretical_power_received_set
             meter_result['agents_in_vicinity_count'] = meter_result['agents_in_vicinity'].count
 
             if meter_result['agents_in_vicinity'].any?
@@ -166,6 +168,12 @@ For each meter
                 meter_result['can_communicate'] = true
                 communicating_meters['communicating'] += 1
             else
+                if meter_result['agents_in_vicinity_count'] > 0
+                    meter_result['antenna_required'] = receiving_agent.antenna_required meter_result['maximum_power_received'], meter_result['minimum_power_received']
+                else
+                    meter_result["antenna_required"] = "No meters in vicinity"
+                end
+
                 meter_result['can_communicate'] = false
                 communicating_meters['not_communicating'] += 1
                 @meters_not_communicating.push meter_result
