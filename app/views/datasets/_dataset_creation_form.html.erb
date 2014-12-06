@@ -24,6 +24,43 @@
 			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_longitude) %></span>
 		<% end %>
 		<%= t.text_field :max_longitude, class: "form-control", placeholder: "maximum longitude" %>
+
+		<% if @dataset.errors.include?(:min_height) %>
+			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:min_height) %></span>
+		<% end %>
+		<%= t.text_field :min_height, class: "form-control", placeholder: "minimum height" %>
+
+		<% if @dataset.errors.include?(:max_height) %>
+			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_height) %></span>
+		<% end %>
+		<%= t.text_field :max_height, class: "form-control", placeholder: "maximum height" %>
+
+		<% if @dataset.errors.include?(:min_gain) %>
+			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:min_gain) %></span>
+		<% end %>
+		<%= t.text_field :min_gain, class: "form-control", placeholder: "minimum gain" %>
+
+		<% if @dataset.errors.include?(:max_gain) %>
+			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_gain) %></span>
+		<% end %>
+		<%= t.text_field :max_gain, class: "form-control", placeholder: "maximum gain" %>
+
+
+		<% if @dataset.errors.include?(:min_transmitting_power) %>
+			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:min_transmitting_power) %></span>
+		<% end %>
+		<%= t.text_field :min_transmitting_power, class: "form-control", placeholder: "minimum transmitting power" %>
+
+		<% if @dataset.errors.include?(:max_transmitting_power) %>
+			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:max_transmitting_power) %></span>
+		<% end %>
+		<%= t.text_field :max_transmitting_power, class: "form-control", placeholder: "maximum transmitting power" %>
+
+		<% if @dataset.errors.include?(:frequency) %>
+			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:frequency) %></span>
+		<% end %>
+		<%= t.text_field :frequency, class: "form-control", placeholder: "frequency" %>
+
 		<% if @dataset.errors.include?(:quantity) %>
 			<span class="label label-danger"><%= @dataset.errors.full_messages_for(:quantity) %></span>
 		<% end %>

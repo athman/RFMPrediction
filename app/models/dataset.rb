@@ -14,12 +14,19 @@ class Dataset
 
 
 	#attr_accessor :min_latitude, :max_latitude, :min_longitude, :max_longitude, :min_gain, :max_gain, :min_height, :max_height, :quantity
-	attr_accessor :min_latitude, :max_latitude, :min_longitude, :max_longitude, :quantity
+	attr_accessor :min_latitude, :max_latitude, :min_longitude, :max_longitude, :quantity, :min_height, :max_height, :min_gain, :max_gain, :min_transmitting_power, :max_transmitting_power, :frequency
 
 	validates :min_latitude, presence: true, numericality: true
 	validates :max_latitude, presence: true, numericality: true
 	validates :min_longitude, presence: true, numericality: true
 	validates :max_longitude, presence: true, numericality: true
+	validates :min_height, presence: true, numericality: true
+	validates :max_height, presence: true, numericality: true
+	validates :min_gain, presence: true, numericality: true
+	validates :max_gain, presence: true, numericality: true
+	validates :min_transmitting_power, presence: true, numericality: true
+	validates :max_transmitting_power, presence: true, numericality: true
+	validates :frequency, presence: true, numericality: true
 
 	#validates :min_gain, presence: true, numericality: true
 	#validates :max_gain, presence: true, numericality: true

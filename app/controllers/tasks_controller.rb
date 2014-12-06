@@ -69,7 +69,8 @@ class TasksController < ApplicationController
         if Rails.env.development?
             #@dataset = Nokogiri::XML(open(@task.dataset.url))
             #@dataset = Nokogiri::XML(open('https://rfmprediction-assets.s3.amazonaws.com/2014/11/06/11/23/57/145/datasets_3.xml'))
-            @dataset = Nokogiri::XML(open('http://rfmprediction.herokuapp.com/media/W1siZiIsIjIwMTQvMTEvMDcvMTQvMjcvMzYvMjc4L2RhdGFzZXRzXzQueG1sIl1d?sha=a92a51bf272ec3e5'))
+            #@dataset = Nokogiri::XML(open('http://rfmprediction.herokuapp.com/media/W1siZiIsIjIwMTQvMTEvMDcvMTQvMjcvMzYvMjc4L2RhdGFzZXRzXzQueG1sIl1d?sha=a92a51bf272ec3e5'))
+            @dataset = Nokogiri::XML(open('http://rfmprediction.herokuapp.com/media/W1siZiIsIjIwMTQvMTIvMDYvMDQvNDcvMTgvNDIwL2RhdGFzZXRzXzYueG1sIl1d?sha=7ce8131bee96fa68'))
         else
             if Rails.env.production?
                 @dataset = Nokogiri::XML(open(@task.dataset.remote_url))
@@ -84,6 +85,7 @@ class TasksController < ApplicationController
             meter['longitude'] = object.at_css("longitude").text.to_s
             meter['gain'] = object.at_css("gain").text.to_s
             meter['height'] = object.at_css("height").text.to_s
+            meter['transmitting-power'] = object.at_css("transmitting-power").text.to_s
             @meters.push(meter)
         end
 
@@ -109,7 +111,7 @@ For each meter
         @polylines = Array.new
 
         @meters.each do |meter|
-            receiving_agent = MeterAgent.new meter['latitude'], meter['longitude'], meter['gain'], meter['height'], @meters
+            receiving_agent = MeterAgent.new meter['latitude'], meter['longitude'], meter['gain'], meter['height'], meter['transmitting-power'], @meters
             meter_result = Hash.new
             theoretical_power_received_set = Array.new
 
@@ -117,6 +119,7 @@ For each meter
             meter_result['longitude'] = meter['longitude']
             meter_result['height'] = meter['height']
             meter_result['gain'] = meter['gain']
+            meter_result['transmitting-power'] = meter['transmitting-power']
             meter_result['agents_in_vicinity'] = Array.new
             meter_result['agents_can_communicate'] = Array.new
 

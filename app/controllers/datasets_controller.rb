@@ -18,10 +18,11 @@ class DatasetsController < ApplicationController
 				i['latitude'] = Random.new.rand(@dataset.min_latitude.to_f..@dataset.max_latitude.to_f).round(6)
 				i['longitude'] = Random.new.rand(@dataset.min_longitude.to_f..@dataset.max_longitude.to_f).round(6)
 				#i['gain'] = Random.new.rand(@dataset.min_gain.to_f..@dataset.max_gain.to_f).round(2)
-				i['gain'] = 1;
+				i['gain'] = Random.new.rand(@dataset.min_gain.to_f..@dataset.max_gain.to_f).round(2)
 				#i['height'] = Random.new.rand(@dataset.min_height.to_f..@dataset.max_height.to_f).round(1)
-				i['height'] = 1.5
-				i['transmitting_power'] = 30
+				i['height'] = Random.new.rand(@dataset.min_height.to_f..@dataset.max_height.to_f).round(2)
+				i['transmitting_power'] = Random.new.rand(@dataset.min_transmitting_power.to_f..@dataset.max_transmitting_power.to_f).round(6)
+				i['frequency'] = @dataset.frequency.to_f
 				@generated_set.push(i)
 			end
 
@@ -57,7 +58,7 @@ class DatasetsController < ApplicationController
 
 	def dataset_params
 		#params.require(:dataset).permit(:min_latitude, :max_latitude, :min_longitude, :max_longitude, :min_gain, :max_gain, :min_height, :max_height, :quantity)
-		params.require(:dataset).permit(:min_latitude, :max_latitude, :min_longitude, :max_longitude, :quantity)
+		params.require(:dataset).permit(:min_latitude, :max_latitude, :min_longitude, :max_longitude, :quantity, :min_height, :max_height, :min_gain, :max_gain, :min_transmitting_power, :max_transmitting_power, :frequency)
 	end
 
 end
