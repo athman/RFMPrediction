@@ -2,19 +2,19 @@ require 'geocoder'
 
 class MeterAgent
 
-	def initialize latitude_arg, longitude_arg, gain_arg, height_arg, transmitting_power_arg, agents_arg #, loss_functions_arg = nil
+	def initialize latitude_arg, longitude_arg, gain_arg, height_arg, transmitting_power_arg, frequency_arg, agents_arg #, loss_functions_arg = nil
 		@latitude = latitude_arg.to_f
 		@longitude = longitude_arg.to_f
 		@my_location = [@latitude, @longitude]
 		@gain = gain_arg.to_f
 		@height = height_arg.to_f
-		@transmitting_power = transmitting_power_arg
+		@transmitting_power = transmitting_power_arg.to_f
 		#@transmitting_power = transmitting_power_arg ||= 30 #dBm
 		@agents = agents_arg
 		@friis_power_received = nil
 		@resultant_theoretical_power_received = nil
 		@antenna_profile = nil
-		@frequency = 900 #MHz
+		@frequency = frequency_arg.to_f #MHz
 		#@loss_functions = loss_functions_arg
 	end
 

@@ -70,7 +70,7 @@ class TasksController < ApplicationController
             #@dataset = Nokogiri::XML(open(@task.dataset.url))
             #@dataset = Nokogiri::XML(open('https://rfmprediction-assets.s3.amazonaws.com/2014/11/06/11/23/57/145/datasets_3.xml'))
             #@dataset = Nokogiri::XML(open('http://rfmprediction.herokuapp.com/media/W1siZiIsIjIwMTQvMTEvMDcvMTQvMjcvMzYvMjc4L2RhdGFzZXRzXzQueG1sIl1d?sha=a92a51bf272ec3e5'))
-            @dataset = Nokogiri::XML(open('http://rfmprediction.herokuapp.com/media/W1siZiIsIjIwMTQvMTIvMDYvMDQvNDcvMTgvNDIwL2RhdGFzZXRzXzYueG1sIl1d?sha=7ce8131bee96fa68'))
+            @dataset = Nokogiri::XML(open('http://rfmprediction.herokuapp.com/media/W1siZiIsIjIwMTQvMTIvMDYvMDYvMzEvNDMvODgwL2RhdGFzZXRzXzgueG1sIl1d?sha=ae6013b1b82b1231'))
         else
             if Rails.env.production?
                 @dataset = Nokogiri::XML(open(@task.dataset.remote_url))
@@ -86,6 +86,7 @@ class TasksController < ApplicationController
             meter['gain'] = object.at_css("gain").text.to_s
             meter['height'] = object.at_css("height").text.to_s
             meter['transmitting-power'] = object.at_css("transmitting-power").text.to_s
+            meter['frequency'] = object.at_css("frequency").text.to_s
             @meters.push(meter)
         end
 
@@ -111,7 +112,7 @@ For each meter
         @polylines = Array.new
 
         @meters.each do |meter|
-            receiving_agent = MeterAgent.new meter['latitude'], meter['longitude'], meter['gain'], meter['height'], meter['transmitting-power'], @meters
+            receiving_agent = MeterAgent.new meter['latitude'], meter['longitude'], meter['gain'], meter['height'], meter['transmitting-power'], meter['frequency'], @meters
             meter_result = Hash.new
             theoretical_power_received_set = Array.new
 
