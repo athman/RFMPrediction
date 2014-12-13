@@ -88,8 +88,10 @@ class MeterAgent
 			antenna = "High Profile"
 		elsif minimum_power_received - 10 <= maximum_power_received && maximum_power_received < minimum_power_received
 			antenna = "Low Profile"
+		elsif minimum_power_received <= maximum_power_received && maximum_power_received < (minimum_power_received + 10)
+			"Low Profile"
 		else
-			"--"
+			"---"
 		end
 
 	end
