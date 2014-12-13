@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-md-6" id='halfpie'></div>
-	<div class="col-md-6">
+	<div class="col-md-6" style="overflow: auto; height: 400px;">
 		<% if @meters_not_communicating.count > 0 %>
 			<table class="table table-stripped table-hover">
 				<caption><h3><%= @meters_not_communicating.count %> Meters Unlikely to Communicate</h3></caption>
