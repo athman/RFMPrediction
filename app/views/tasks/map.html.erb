@@ -6,35 +6,39 @@
 <div class="row">
 	<div class="col-md-6" id='halfpie'></div>
 	<div class="col-md-6">
-		<table class="table table-stripped table-hover">
-			<caption><h3>Meters Not Communicating</h3></caption>
-			<thead>
-				<th>
-					<td>Meter Id</td>
-					<td>Latitude</td>
-					<td>Longitude</td>
-					<td>Agents in vicinity</td>
-					<td>Max. Power Received</td>
-					<td>Antenna Required</td>
-				</th>
-			</thead>
-			<tbody>
-				<% count = 0 %>
-				<% @meters_not_communicating.each do |meter| %>
-					<tr>
-						<td></td>
-						<% count += 1 %>
-						<td><%= count %></td>
-						<td> <%= meter['latitude'] %> </td>
-						<td> <%= meter['longitude'] %> </td>
-						<td> <%= meter['agents_in_vicinity_count'] %> </td>
-						<td> <%= meter['maximum_power_received'] %> </td>
-						<td> <%= meter['antenna_required'] %> </td>
-					</tr>
-				<% end %>
-			</tbody>
+		<% if @meters_not_communicating.count > 0 %>
+			<table class="table table-stripped table-hover">
+				<caption><h3>Meters Not Communicating</h3></caption>
+				<thead>
+					<th>
+						<td>Meter Id</td>
+						<td>Latitude</td>
+						<td>Longitude</td>
+						<td>Agents in vicinity</td>
+						<td>Max. Power Received</td>
+						<td>Antenna Required</td>
+					</th>
+				</thead>
+				<tbody>
+					<% count = 0 %>
+					<% @meters_not_communicating.each do |meter| %>
+						<tr>
+							<td></td>
+							<% count += 1 %>
+							<td><%= count %></td>
+							<td> <%= meter['latitude'] %> </td>
+							<td> <%= meter['longitude'] %> </td>
+							<td> <%= meter['agents_in_vicinity_count'] %> </td>
+							<td> <%= meter['maximum_power_received'] %> </td>
+							<td> <%= meter['antenna_required'] %> </td>
+						</tr>
+					<% end %>
+				</tbody>
 
-		</table>
+			</table>
+		<% else %>
+			<h3>All meters are able to communicate</h3>
+		<% end %>
 	</div>
 </div>
 
